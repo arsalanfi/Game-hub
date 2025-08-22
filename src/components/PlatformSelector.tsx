@@ -3,16 +3,17 @@ import usePlatform from "@/hooks/usePlatform";
 import { Menu, Button, Portal } from "@chakra-ui/react";
 interface Props {
   onSelectedPlatform: (platform: PlatForm) => void;
+  selectedPlatform: PlatForm | null;
 }
 
-const PlatformSelector = ({ onSelectedPlatform }: Props) => {
+const PlatformSelector = ({ onSelectedPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatform();
   if (error) return null;
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
-          Platform
+          {selectedPlatform?.name || "Platform"}
         </Button>
       </Menu.Trigger>
       <Portal>
