@@ -1,5 +1,4 @@
 import useData from "./useData";
-import type { Genre } from "./useGenres";
 
 interface platforms {
   id: number;

@@ -1,8 +1,11 @@
+import type { PlatForm } from "@/hooks/useGames";
 import usePlatform from "@/hooks/usePlatform";
 import { Menu, Button, Portal } from "@chakra-ui/react";
-import React from "react";
+interface Props {
+  onSelectedPlatform: (platform: PlatForm) => void;
+}
 
-const PlatformSelector = () => {
+const PlatformSelector = ({ onSelectedPlatform }: Props) => {
   const { data, error } = usePlatform();
   if (error) return null;
   return (
@@ -16,7 +19,11 @@ const PlatformSelector = () => {
         <Menu.Positioner>
           <Menu.Content>
             {data.map((items) => (
-              <Menu.Item key={items.id} value={items.slug}>
+              <Menu.Item
+                onClick={() => onSelectedPlatform(items)}
+                key={items.id}
+                value={items.slug}
+              >
                 {items.name}
               </Menu.Item>
             ))}
